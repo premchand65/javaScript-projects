@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* #tableget{ */
+    /* border: 1px solid black; */
+    /* } */
+  </style>
+</head>
+
+<body>
+
+  <table id="tableget">
+
+  </table>
+  <script>
+    // var get =  fetch("https://fakestoreapi.com/products",{
+    //   method:"get"
+    // })
+    // let ans = get.then((val)=>val.json().then((val=>console.log(val))))
+
+    function api() {
+      return fetch("https://fakestoreapi.com/products", {
+        method: "get"
+      });
+    }
+
+
+    async function getapi() {
+      let a1 = await api();
+      let a2 = await a1.json();
+      console.log(a2);
+
+
+      let gettable = document.getElementById("tableget");
+      gettable.style.borderCollapse = "collapse";
+
+      let th = document.createElement("th");
+      th.innerText = "Id";
+      gettable.appendChild(th);
+      th.style.border = "1px solid black";
+
+      let th1 = document.createElement("th");
+      th1.innerText = "Title";
+      gettable.appendChild(th1);
+      th1.style.border = "1px solid black";
+
+      let th3 = document.createElement("th");
+      th3.innerText = "Price";
+      gettable.appendChild(th3);
+      th3.style.border = "1px solid black";
+
+      let th4 = document.createElement("th");
+      th4.innerText = "Description";
+      gettable.appendChild(th4);
+      th4.style.border = "1px solid black";
+
+      let th5 = document.createElement("th");
+      th5.innerText = "category";
+      gettable.appendChild(th5);
+      th5.style.border = "1px solid black";
+
+      let th6 = document.createElement("th");
+      th6.innerText = "rating";
+      gettable.appendChild(th6);
+      th6.style.border = "1px solid black";
+
+      let th7 = document.createElement("th");
+      th7.innerText = "Image";
+      gettable.appendChild(th7);
+      th7.style.border = "1px solid black";
+
+      for (i = 0; i < a2.length; i++) {
+        let row = document.createElement("tr");
+        row.style.border = "1px solid black";
+        // row.style.borderCollapse = "collapse"
+        let data = document.createElement("td");
+        data.style.border = "1px solid black";
+        // data.style.borderCollapse = "collapse"
+        data.innerText = `${a2[i].id} `;
+        row.appendChild(data);
+        gettable.appendChild(row);
+
+
+
+
+        // let row1 = document.createElement("tr");
+        let data1 = document.createElement("td");
+        data1.innerText = a2[i].title;
+        data1.style.border = "1px solid black";
+        // data1.style.borderCollapse = "collapse"
+        row.appendChild(data1);
+        // gettable.appendChild(row1);
+
+
+        // let row2 = document.createElement("tr");
+        let data2 = document.createElement("td");
+        data2.innerText = a2[i].price;
+        data2.style.border = "1px solid black";
+        // data2.style.borderCollapse = "collapse"
+        row.appendChild(data2);
+        // gettable.appendChild(row2);
+
+
+
+        // let row3 = document.createElement("tr");
+        let data3 = document.createElement("td");
+        data3.innerText = a2[i].description;
+        data3.style.border = "1px solid black";
+        // data3.style.borderCollapse = "collapse"
+        row.appendChild(data3);
+        // gettable.appendChild(row3);
+
+        let data4 = document.createElement("td");
+        data4.innerText = a2[i].category;
+        data4.style.border = "1px solid black";
+        // data3.style.borderCollapse = "collapse"
+        row.appendChild(data4);
+
+        let data6 = document.createElement("td");
+        data6.innerText = a2[i].rating.rate;
+        data6.style.border = "1px solid black";
+        // data3.style.borderCollapse = "collapse"
+        row.appendChild(data6);
+
+
+
+        // let row4 = document.createElement("tr");
+        let data5 = document.createElement("td");
+        let getimg = document.createElement("img");
+        data5.appendChild(getimg);
+        data5.style.border = "1px solid black";
+        getimg.setAttribute("src", a2[i].image);
+        getimg.style.width = "200px";
+        getimg.style.height = "200px";
+        row.appendChild(data5);
+        // gettable.appendChild(row4);
+      }
+    }
+
+    getapi();
+
+  </script>
+</body>
+
+</html>
